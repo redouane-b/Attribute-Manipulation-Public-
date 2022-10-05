@@ -1,0 +1,65 @@
+base : &base
+  width : 512
+  zdim : 16
+  num_mixtures : 10
+  dec_blocks : "1x2,4m1,4x3,8m4,8x4,16m8,16x9,32m16,32x21,64m32,64x13,128m64,128x7,256m128"
+  enc_blocks : "256x3,256d2,128x8,128d2,64x12,64d2,32x17,32d2,16x7,16d2,8x5,8d2,4x5,4d4,1x4"
+  dataset : ffhq_256
+  image_channels : 3
+  image_size : 256
+  no_bias_above : 64
+  scale_encoblock : True
+  bottleneck_multiple : 0.25
+
+ffhq64 :
+  width : 512
+  zdim : 16
+  num_mixtures : 10
+  dec_blocks : "1x2,4m1,4x3,8m4,8x4,16m8,16x9,32m16,32x21,64m32,64x13"
+  enc_blocks : "64x12,64d2,32x17,32d2,16x7,16d2,8x5,8d2,4x5,4d4,1x4"
+  dataset : ffhq_256
+  image_channels : 3
+  image_size : 64
+  no_bias_above : 64
+  scale_encoblock : True
+  bottleneck_multiple : 0.25
+  
+cifar10 :
+  width : 384
+  zdim : 16
+  num_mixtures : 10
+  dec_blocks : "1x1,4m1,4x2,8m4,8x5,16m8,16x10,32m16,32x21"
+  enc_blocks : "32x11,32d2,16x6,16d2,8x6,8d2,4x3,4d4,1x3"
+  dataset : cifar10
+  image_channels : 3
+  image_size : 32
+  no_bias_above : 64
+  scale_encoblock : True
+  bottleneck_multiple : 0.25
+
+
+ffhq32 :
+  width : 512
+  zdim : 16
+  num_mixtures : 10
+  dec_blocks : "1x2,4m1,4x3,8m4,8x4,16m8,16x9,32m16,32x21"
+  enc_blocks : "32x17,32d2,16x7,16d2,8x5,8d2,4x5,4d4,1x4"
+  dataset : ffhq_256
+  image_channels : 3
+  image_size : 32
+  no_bias_above : 32
+  scale_encoblock : True
+  bottleneck_multiple : 0.25
+
+ffhq256_ms3:
+  << : *base
+  intermediate_res : [32, 64, 128]
+  input_net_nblocks : [4, 4, 4]
+
+ffhq256_ms3b:
+  << : *base
+  intermediate_res : [32, 64, 128]
+  input_net_nblocks : [1, 1, 1]
+
+
+
